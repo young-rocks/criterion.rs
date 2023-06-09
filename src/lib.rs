@@ -518,13 +518,13 @@ impl<M: Measurement> Criterion<M> {
     /// A bigger sample should yield more accurate results if paired with a sufficiently large
     /// measurement time.
     ///
-    /// Sample size must be at least 10.
+    /// Sample size must be at least 1.
     ///
     /// # Panics
     ///
-    /// Panics if n < 10
+    /// Panics if n < 1
     pub fn sample_size(mut self, n: usize) -> Criterion<M> {
-        assert!(n >= 10);
+        assert!(n >= 1);
 
         self.config.sample_size = n;
         self
@@ -1093,7 +1093,7 @@ https://bheisler.github.io/criterion.rs/book/faq.html
         }
 
         if let Some(&num_size) = matches.get_one("sample-size") {
-            assert!(num_size >= 10);
+            assert!(num_size >= 1);
             self.config.sample_size = num_size;
         }
         if let Some(&num_seconds) = matches.get_one("warm-up-time") {
